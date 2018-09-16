@@ -13,11 +13,12 @@ import javafx.util.Duration;
 public class ToggleSwitch extends Parent implements ToggleSwitchInterface {
 
     Color stroke = Color.web("#333333");
-    Color armed = Color.web("#666666");
+    Color armedd = Color.web("#666666");
     Color accent = Color.web("#498205");
     Color accent_hover = Color.web("#80a850");
 
     public BooleanProperty selectedProperty() { return selected; }
+    public BooleanProperty armedProperty() { return armed; }
     public DoubleProperty widthProperty() { return width; }
     public void setWidth(double width) { this.width.set(width); }
     public DoubleProperty heightProperty() { return height; }
@@ -52,6 +53,9 @@ public class ToggleSwitch extends Parent implements ToggleSwitchInterface {
     public void setColorTriggerOn(String colorTriggerOn) { this.colorTriggerOn.set(colorTriggerOn); }
     public StringProperty colorTriggerOffProperty() { return colorTriggerOff; }
     public void setColorTriggerOff(String colorTriggerOff) { this.colorTriggerOff.set(colorTriggerOff); }
+    public StringProperty colorBorderTriggerOffProperty() { return colorBorderTriggerOff; }
+    public void setColorBorderTriggerOff(String colorBorderTriggerOff) { this.colorBorderTriggerOff.set(colorBorderTriggerOff); }
+
     public StringProperty colorHoverBackgroundOnProperty() { return colorHoverBackgroundOn; }
     public void setColorHoverBackgroundOn(String colorHoverBackgroundOn) { this.colorHoverBackgroundOn.set(colorHoverBackgroundOn); }
     public StringProperty colorHoverBackgroundOffProperty() { return colorHoverBackgroundOff; }
@@ -64,6 +68,9 @@ public class ToggleSwitch extends Parent implements ToggleSwitchInterface {
     public void setColorHoverTriggerOn(String colorHoverTriggerOn) { this.colorHoverTriggerOn.set(colorHoverTriggerOn); }
     public StringProperty colorHoverTriggerOffProperty() { return colorHoverTriggerOff; }
     public void setColorHoverTriggerOff(String colorHoverTriggerOff) { this.colorHoverTriggerOff.set(colorHoverTriggerOff); }
+    public StringProperty colorHoverBorderTriggerOffProperty() { return colorHoverBorderTriggerOff; }
+    public void setColorHoverBorderTriggerOff(String colorHoverBorderTriggerOff) { this.colorHoverBorderTriggerOff.set(colorHoverBorderTriggerOff); }
+
     public StringProperty colorArmedBackgroundOnProperty() { return colorArmedBackgroundOn; }
     public void setColorArmedBackgroundOn(String colorArmedBackgroundOn) { this.colorArmedBackgroundOn.set(colorArmedBackgroundOn); }
     public StringProperty colorArmedBackgroundOffProperty() { return colorArmedBackgroundOff; }
@@ -76,6 +83,8 @@ public class ToggleSwitch extends Parent implements ToggleSwitchInterface {
     public void setColorArmedTriggerOn(String colorArmedTriggerOn) { this.colorArmedTriggerOn.set(colorArmedTriggerOn); }
     public StringProperty colorArmedTriggerOffProperty() { return colorArmedTriggerOff; }
     public void setColorArmedTriggerOff(String colorArmedTriggerOff) { this.colorArmedTriggerOff.set(colorArmedTriggerOff); }
+    public StringProperty colorArmedBorderTriggerOffProperty() { return colorArmedBorderTriggerOff; }
+    public void setColorArmedBorderTriggerOff(String colorArmedBorderTriggerOff) { this.colorArmedBorderTriggerOff.set(colorArmedBorderTriggerOff); }
 
     public ToggleSwitch() {
         this(43.0, 18.5);
@@ -94,18 +103,20 @@ public class ToggleSwitch extends Parent implements ToggleSwitchInterface {
     public void setListener() {
         selected.addListener((v, oldValue, newValue) -> {
             transition.setToX(
-                    newValue.booleanValue() ? width.getValue() - height.getValue() : 0
+                    newValue ? widthBackground.getValue() - heightBackground.getValue() : 0
             );
             transition.play();
 
-            if(newValue.booleanValue()) {
-                background.setFill(accent_hover);
-                background.setStroke(accent_hover);
-                trigger.setFill(Color.WHITE);
+            if(newValue) {
+                background.setFill(Color.web(colorHoverBackgroundOn.get()));
+                background.setStroke(Color.web(colorHoverBorderOn.get()));
+                trigger.setFill(Color.web(colorTriggerOn.get()));
+                trigger.setStroke(Color.web(colorBorderTriggerOn.get()));
             } else {
-                background.setFill(Color.WHITE);
-                background.setStroke(stroke);
-                trigger.setFill(stroke);
+                background.setFill(Color.web(colorHoverBackgroundOff.get()));
+                background.setStroke(Color.web(colorHoverBorderOff.get()));
+                trigger.setFill(Color.web(colorTriggerOff.get()));
+                trigger.setStroke(Color.web(colorBorderTriggerOff.get()));
             }
 
         });
@@ -113,21 +124,195 @@ public class ToggleSwitch extends Parent implements ToggleSwitchInterface {
         hoverProperty().addListener( (v, oldValue, newValue) -> {
 
             if(newValue) {
-                if(!selected.get()) {
-                    background.setStroke(Color.BLACK);
-                    trigger.setFill(Color.BLACK);
+                if(selected.get()) {
+                    background.setFill(Color.web(colorHoverBackgroundOn.get()));
+                    background.setStroke(Color.web(colorHoverBorderOn.get()));
+                    trigger.setFill(Color.web(colorHoverTriggerOn.get()));
+                    trigger.setStroke(Color.web(colorHoverBorderTriggerOn.get()));
                 } else {
-                    background.setFill(accent_hover);
-                    background.setStroke(accent_hover);
+                    background.setFill(Color.web(colorHoverBackgroundOff.get()));
+                    background.setStroke(Color.web(colorHoverBorderOff.get()));
+                    trigger.setFill(Color.web(colorHoverTriggerOff.get()));
+                    trigger.setStroke(Color.web(colorHoverBorderTriggerOff.get()));
                 }
             } else {
-                if(!selected.get()) {
-                    background.setStroke(stroke);
-                    trigger.setFill(stroke);
+                if(selected.get()) {
+                    background.setFill(Color.web(colorBackgroundOn.get()));
+                    background.setStroke(Color.web(colorBorderOn.get()));
+                    trigger.setFill(Color.web(colorTriggerOn.get()));
+                    trigger.setStroke(Color.web(colorBorderTriggerOn.get()));
                 } else {
-                    background.setFill(accent);
-                    background.setStroke(accent);
+                    background.setFill(Color.web(colorBackgroundOff.get()));
+                    background.setStroke(Color.web(colorBorderOff.get()));
+                    trigger.setFill(Color.web(colorTriggerOff.get()));
+                    trigger.setStroke(Color.web(colorBorderTriggerOff.get()));
                 }
+            }
+        });
+
+        setListenerShape();
+        setListenerColor();
+        setListenerColorHover();
+        setListenerColorArmed();
+
+    }
+
+    @Override
+    public void setListenerShape() {
+
+        height.addListener((v, oldHeight, newHeight) -> region.setPrefHeight(newHeight.doubleValue()));
+        width.addListener((v, oldWidth, newWidth) -> region.setPrefWidth(newWidth.doubleValue()));
+        heightBackground.addListener((v, oldHeight, newHeight) -> background.setHeight(newHeight.doubleValue()));
+        widthBackground.addListener((v, oldWidth, newWidth) -> background.setWidth(newWidth.doubleValue()));
+        heightTrigger.addListener((v, oldHeight, newHeight) -> trigger.setHeight(newHeight.doubleValue()));
+        widthTrigger.addListener((v, oldWidth, newWidth) -> trigger.setWidth(newWidth.doubleValue()));
+        widthBorderBackground.addListener((v, oldWidth, newWidth) -> background.setStrokeWidth(newWidth.doubleValue()));
+        widthBorderTrigger.addListener((v, oldWidth, newWidth) -> trigger.setStrokeWidth(newWidth.doubleValue()));
+        arcBackground.addListener((v, oldArc, newArc) -> {
+            background.setArcWidth(newArc.doubleValue());
+            background.setArcHeight(newArc.doubleValue());
+        });
+        arcTrigger.addListener((v, oldArc, newArc) -> {
+            trigger.setArcHeight(newArc.doubleValue());
+            trigger.setArcWidth(newArc.doubleValue());
+        });
+        speedAnimation.addListener((v, oldSpeed, newSpeed) -> transition.setDuration(Duration.millis(newSpeed.doubleValue())));
+
+    }
+
+    @Override
+    public void setListenerColor() {
+
+        colorBackgroundOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && !isHover() && !isArmed()) {
+                background.setFill(Color.web(newColor));
+            }
+        });
+        colorBackgroundOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && !isHover() && !isArmed()) {
+                background.setFill(Color.web(newColor));
+            }
+        });
+        colorBorderOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && !isHover() && !isArmed()) {
+                background.setStroke(Color.web(newColor));
+            }
+        });
+        colorBorderOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && !isHover() && !isArmed()) {
+                background.setStroke(Color.web(newColor));
+            }
+        });
+        colorTriggerOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && !isHover() && !isArmed()) {
+                trigger.setFill(Color.web(newColor));
+            }
+        });
+        colorTriggerOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && !isHover() && !isArmed()) {
+                trigger.setFill(Color.web(newColor));
+            }
+        });
+        colorBorderTriggerOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && !isHover() && !isArmed()) {
+                trigger.setStroke(Color.web(newColor));
+            }
+        });
+        colorBorderTriggerOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && !isHover() && !isArmed()) {
+                trigger.setStroke(Color.web(newColor));
+            }
+        });
+
+    }
+
+    @Override
+    public void setListenerColorHover() {
+
+        colorHoverBackgroundOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && isHover() && !isArmed()) {
+                background.setFill(Color.web(newColor));
+            }
+        });
+        colorHoverBackgroundOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && isHover() && !isArmed()) {
+                background.setFill(Color.web(newColor));
+            }
+        });
+        colorHoverBorderOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && isHover() && !isArmed()) {
+                background.setStroke(Color.web(newColor));
+            }
+        });
+        colorHoverBorderOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && isHover() && !isArmed()) {
+                background.setStroke(Color.web(newColor));
+            }
+        });
+        colorHoverTriggerOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && isHover() && !isArmed()) {
+                trigger.setFill(Color.web(newColor));
+            }
+        });
+        colorHoverTriggerOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && isHover() && !isArmed()) {
+                trigger.setFill(Color.web(newColor));
+            }
+        });
+        colorHoverBorderTriggerOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && isHover() && !isArmed()) {
+                trigger.setStroke(Color.web(newColor));
+            }
+        });
+        colorHoverBorderTriggerOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && isHover() && !isArmed()) {
+                trigger.setStroke(Color.web(newColor));
+            }
+        });
+
+    }
+
+    @Override
+    public void setListenerColorArmed() {
+
+        colorArmedBackgroundOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && !isHover() && isArmed()) {
+                background.setFill(Color.web(newColor));
+            }
+        });
+        colorArmedBackgroundOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && !isHover() && isArmed()) {
+                background.setFill(Color.web(newColor));
+            }
+        });
+        colorArmedBorderOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && !isHover() && isArmed()) {
+                background.setStroke(Color.web(newColor));
+            }
+        });
+        colorArmedBorderOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && !isHover() && isArmed()) {
+                background.setStroke(Color.web(newColor));
+            }
+        });
+        colorArmedTriggerOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && !isHover() && isArmed()) {
+                trigger.setFill(Color.web(newColor));
+            }
+        });
+        colorArmedTriggerOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && !isHover() && isArmed()) {
+                trigger.setFill(Color.web(newColor));
+            }
+        });
+        colorArmedBorderTriggerOn.addListener((v, oldColor, newColor) -> {
+            if(selected.get() && !isHover() && isArmed()) {
+                trigger.setStroke(Color.web(newColor));
+            }
+        });
+        colorArmedBorderTriggerOff.addListener((v, oldColor, newColor) -> {
+            if(!selected.get() && !isHover() && isArmed()) {
+                trigger.setStroke(Color.web(newColor));
             }
         });
 
@@ -138,49 +323,65 @@ public class ToggleSwitch extends Parent implements ToggleSwitchInterface {
         setOnMouseClicked( event -> selected.set(!selected.get()) );
 
         setOnMousePressed( event -> {
-            background.setFill(armed);
-            background.setStroke(armed);
+            armed.set(true);
+            background.setFill(armedd);
+            background.setStroke(armedd);
             trigger.setFill(Color.WHITE);
         });
 
         setOnMouseReleased( event -> {
+            armed.set(false);
             background.setFill(Color.WHITE);
             background.setStroke(stroke);
             trigger.setFill(stroke);
         });
 
+        /*
         setOnMouseDragged( event -> {
 
         });
+        */
     }
 
     public ToggleSwitch(Double width, Double height) {
+
+        widthBackground.setValue(width);
+        heightBackground.setValue(height);
 
         region.setPrefHeight(100.0);
         region.setPrefWidth(100.0);
         region.setBackground(Background.EMPTY);
 
-        Rectangle background = new Rectangle(width, height);
+        background.setWidth(width);
+        background.setHeight(height);
         background.setArcWidth(height);
         background.setArcHeight(height);
         background.setFill(Color.WHITE);
         background.setStroke(stroke);
         background.setStrokeWidth(2.0);
 
-        Circle trigger = new Circle(height / 3.7);
-        trigger.setCenterX(height / 2);
-        trigger.setCenterY(height / 2);
+        trigger.setArcWidth(height / 2);
+        trigger.setArcHeight(height / 2);
+        trigger.setWidth(height / 2);
+        trigger.setHeight(height / 2);
+        trigger.setFill(Color.WHITE);
+
+        //trigger.setRadius( height / 3.7 );
+        trigger.setX(height / 4);
+        trigger.setY(height / 4);
         trigger.setFill(stroke);
 
         transition.setNode(trigger);
+        transition.setDuration(Duration.millis(70));
 
         getChildren().addAll(region, background, trigger);
-
-
-
-
-
-
+        setListener();
+        setEventHandler();
 
     }
+
+    public boolean isArmed() {
+        return armed.get();
+    }
+
 }
