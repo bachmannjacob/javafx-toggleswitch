@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<style>
+
+    <dimensions>
+        <ground>
+            <height id="0">18.5</height>
+            <width id="1">43.0</width>
+            <arc>
+                <width id="2">18.5</width>
+            </arc>
+            <border>
+                <width id="3">2.0</width>
+            </border>
+        </ground>
+
+        <trigger>
+            <height id="4">9.25</height>
+            <width id="5">9.25</width>
+            <arc>
+                <width id="6">9.25</width>
+            </arc>
+            <border>
+                <width id="7">1.0</width>
+            </border>
+        </trigger>
+    </dimensions>
+
+    <selected>
+        <ground>
+            <base>
+                <background id="8">#498205</background>
+                <border>
+                    <background id="9">#498205</background>
+                </border>
+            </base>
+            <hover>
+                <background id="10">#80a850</background>
+                <border>
+                    <background id="11">#80a850</background>
+                </border>
+            </hover>
+            <armed>
+                <background id="12">#666666</background>
+                <border>
+                    <background id="13">#666666</background>
+                </border>
+            </armed>
+        </ground>
+
+        <trigger>
+            <base>
+                <background id="14">#ffffff</background>
+                <border>
+                    <background id="15">#ffffff</background>
+                </border>
+            </base>
+            <hover>
+                <background id="16">#ffffff</background>
+                <border>
+                    <background id="17">#ffffff</background>
+                </border>
+            </hover>
+            <armed>
+                <background id="18">#ffffff</background>
+                <border>
+                    <background id="19">#ffffff</background>
+                </border>
+            </armed>
+        </trigger>
+    </selected>
+
+    <unselected>
+        <ground>
+            <base>
+                <background id="20">#ffffff</background>
+                <border>
+                    <background id="21">#333333</background>
+                </border>
+            </base>
+            <hover>
+                <background id="22">#ffffff</background>
+                <border>
+                    <background id="23">#000000</background>
+                </border>
+            </hover>
+            <armed>
+                <background id="24">#666666</background>
+                <border>
+                    <background id="25">#666666</background>
+                </border>
+            </armed>
+        </ground>
+        <trigger>
+            <base>
+                <background id="26">#498205</background>
+                <border>
+                    <background id="27">#498205</background>
+                </border>
+            </base>
+            <hover>
+                <background id="28">#80a850</background>
+                <border>
+                    <background id="29">#80a850</background>
+                </border>
+            </hover>
+            <armed>
+                <background id="30">#666666</background>
+                <border>
+                    <background id="31">#666666</background>
+                </border>
+            </armed>
+        </trigger>
+    </unselected>
+</style>
