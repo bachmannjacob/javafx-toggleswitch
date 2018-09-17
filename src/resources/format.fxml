@@ -1,6 +1,0 @@
-<?import javafx.scene.layout.VBox?>
-<?import bchmnn.ToggleSwitch?>
-
-<VBox fx:id="root" fx:controller="resources.Controller" xmlns:fx="http://javafx.com/fxml">
-    <ToggleSwitch fx:id="tgglswtch"/>
-</VBox>
