@@ -1,5 +1,6 @@
 package bchmnn;
 
+import bchmnn.styles.Styles;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -14,7 +15,15 @@ public class example extends Application {
     @Override
     public void start(Stage primaryStage) {
         VBox root = new VBox();
-        root.getChildren().add(new ToggleSwitch());
+
+
+        ToggleSwitch swtch = new ToggleSwitch();
+        /*
+        swtch.loadStyle(Styles.WIN8);
+        swtch.build();
+        */
+
+        root.getChildren().add(swtch);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 

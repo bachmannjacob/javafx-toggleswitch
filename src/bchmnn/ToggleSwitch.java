@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -30,6 +29,7 @@ public class ToggleSwitch extends Parent {
     public DimensionPack dimensions = new DimensionPack();
 
     public Rectangle ground = new Rectangle();
+    public Rectangle innerBorder = new Rectangle();
     public Rectangle trigger = new Rectangle();
 
     public TranslateTransition transition = new TranslateTransition();
@@ -44,6 +44,8 @@ public class ToggleSwitch extends Parent {
     public ToggleSwitch() {
 
         dimensions.speed = 70.0;
+        transition.setNode(trigger);
+        getChildren().addAll(ground, trigger);
         loadStyle("WIN10");
         build();
         setEventHandler();
@@ -60,21 +62,28 @@ public class ToggleSwitch extends Parent {
         ground.setFill(Color.web(unselected.ground.base.background));
         ground.setStroke(Color.web(unselected.ground.base.border.background));
         ground.setStrokeWidth(dimensions.ground.border.width);
+        ground.setStrokeMiterLimit(10.0);
+
+        Double width = 2.0;
+        innerBorder.setHeight(dimensions.ground.height - 2*(dimensions.ground.border.width));
+        innerBorder.setWidth(dimensions.ground.width - 2*(dimensions.ground.border.width));
+        innerBorder.setX(dimensions.ground.border.width);
+        innerBorder.setY(dimensions.ground.border.width);
+        innerBorder.setFill(Color.TRANSPARENT);
+        innerBorder.setStrokeWidth(width);
+        innerBorder.setStroke(Color.WHITE);
 
         trigger.setHeight(dimensions.trigger.height);
         trigger.setWidth(dimensions.trigger.width);
         trigger.setArcHeight(dimensions.trigger.arc.width);
         trigger.setArcWidth(dimensions.trigger.arc.width);
         trigger.setX(dimensions.ground.height / 4);
-        trigger.setY(dimensions.ground.height / 4);
+        trigger.setY(dimensions.ground.height / 2 - dimensions.trigger.height / 2);
         trigger.setFill(Color.web(unselected.trigger.base.background));
         trigger.setStroke(Color.web(unselected.trigger.base.border.background));
         trigger.setStrokeWidth(dimensions.trigger.border.width);
 
-        transition.setNode(trigger);
         transition.setDuration(Duration.millis(dimensions.speed));
-
-        getChildren().addAll(ground, trigger);
 
     }
 
@@ -172,43 +181,43 @@ public class ToggleSwitch extends Parent {
 
         Doc doc = new Doc("src/bchmnn/styles/" + style + ".xml");
 
-        dimensions.ground.height = doc.getD("0");
-        dimensions.ground.width = doc.getD("1");
-        dimensions.ground.arc.width = doc.getD("2");
-        dimensions.ground.border.width = doc.getD("3");
+        dimensions.ground.height = doc.getD("dgh");
+        dimensions.ground.width = doc.getD("dgw");
+        dimensions.ground.arc.width = doc.getD("dgaw");
+        dimensions.ground.border.width = doc.getD("dgbw");
 
-        dimensions.trigger.height = doc.getD("4");
-        dimensions.trigger.width = doc.getD("5");
-        dimensions.trigger.arc.width = doc.getD("6");
-        dimensions.trigger.border.width = doc.getD("7");
+        dimensions.trigger.height = doc.getD("dth");
+        dimensions.trigger.width = doc.getD("dtw");
+        dimensions.trigger.arc.width = doc.getD("dtaw");
+        dimensions.trigger.border.width = doc.getD("dtbw");
 
-        selected.ground.base.background = doc.getS("8");
-        selected.ground.base.border.background = doc.getS("9");
-        selected.ground.hover.background = doc.getS("10");
-        selected.ground.hover.border.background = doc.getS("11");
-        selected.ground.armed.background = doc.getS("12");
-        selected.ground.armed.border.background = doc.getS("13");
+        selected.ground.base.background = doc.getS("sgbb");
+        selected.ground.base.border.background = doc.getS("sgbbb");
+        selected.ground.hover.background = doc.getS("sghb");
+        selected.ground.hover.border.background = doc.getS("sghbb");
+        selected.ground.armed.background = doc.getS("sgab");
+        selected.ground.armed.border.background = doc.getS("sgabb");
 
-        selected.trigger.base.background = doc.getS("14");
-        selected.trigger.base.border.background = doc.getS("15");
-        selected.trigger.hover.background = doc.getS("16");
-        selected.trigger.hover.border.background = doc.getS("17");
-        selected.trigger.armed.background = doc.getS("18");
-        selected.trigger.armed.border.background = doc.getS("19");
+        selected.trigger.base.background = doc.getS("stbb");
+        selected.trigger.base.border.background = doc.getS("stbbb");
+        selected.trigger.hover.background = doc.getS("sthb");
+        selected.trigger.hover.border.background = doc.getS("sthbb");
+        selected.trigger.armed.background = doc.getS("stab");
+        selected.trigger.armed.border.background = doc.getS("stabb");
 
-        unselected.ground.base.background = doc.getS("20");
-        unselected.ground.base.border.background = doc.getS("21");
-        unselected.ground.hover.background = doc.getS("22");
-        unselected.ground.hover.border.background = doc.getS("23");
-        unselected.ground.armed.background = doc.getS("24");
-        unselected.ground.armed.border.background = doc.getS("25");
+        unselected.ground.base.background = doc.getS("ugbb");
+        unselected.ground.base.border.background = doc.getS("ugbbb");
+        unselected.ground.hover.background = doc.getS("ughb");
+        unselected.ground.hover.border.background = doc.getS("ughbb");
+        unselected.ground.armed.background = doc.getS("ugab");
+        unselected.ground.armed.border.background = doc.getS("ugabb");
 
-        unselected.trigger.base.background = doc.getS("26");
-        unselected.trigger.base.border.background = doc.getS("27");
-        unselected.trigger.hover.background = doc.getS("28");
-        unselected.trigger.hover.border.background = doc.getS("29");
-        unselected.trigger.armed.background = doc.getS("30");
-        unselected.trigger.armed.border.background = doc.getS("31");
+        unselected.trigger.base.background = doc.getS("utbb");
+        unselected.trigger.base.border.background = doc.getS("utbbb");
+        unselected.trigger.hover.background = doc.getS("uthb");
+        unselected.trigger.hover.border.background = doc.getS("uthbb");
+        unselected.trigger.armed.background = doc.getS("utab");
+        unselected.trigger.armed.border.background = doc.getS("utabb");
 
 
     }
@@ -228,13 +237,11 @@ public class ToggleSwitch extends Parent {
                 e.printStackTrace();
                 return;
             }
-
-            doc.getDocumentElement().normalize();
         }
 
-        public String getS(String id) { return doc.getElementById(id).getTextContent(); }
+        public String getS(String id) { return doc.getElementsByTagName(id).item(0).getTextContent(); }
 
-        public Double getD(String id) { return Double.parseDouble(doc.getElementById(id).getTextContent()); }
+        public Double getD(String id) { return Double.parseDouble(doc.getElementsByTagName(id).item(0).getTextContent()); }
 
     }
 

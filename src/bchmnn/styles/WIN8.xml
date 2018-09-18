@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<style>
+
+    <dgh>20.0</dgh>         <!-- dimensions.ground.height -->
+    <dgw>60.0</dgw>         <!-- dimensions.ground.width -->
+    <dgaw>0.0</dgaw>        <!-- dimensions.ground.arc.width -->
+    <dgbw>2.0</dgbw>        <!-- dimensions.ground.border.width -->
+
+    <dth>20.0</dth>         <!-- dimensions.trigger.height -->
+    <dtw>13.0</dtw>         <!-- dimensions.trigger.width -->
+    <dtaw>0.0</dtaw>        <!-- dimensions.trigger.arc.width -->
+    <dtbw>2.0</dtbw>        <!-- dimensions.trigger.border.width -->
+
+    <sgbb>#4617B4</sgbb>    <!-- selected.ground.base.background -->
+    <sgbbb>#A6A6A6</sgbbb>  <!-- selected.ground.base.border.background -->
+    <sghb>#6D46CA</sghb>    <!-- selected.ground.hover.background -->
+    <sghbb>#A6A6A6</sghbb>  <!-- selected.ground.hover.border.background -->
+    <sgab>#6D46CA</sgab>    <!-- selected.ground.armed.background -->
+    <sgabb>#A6A6A6</sgabb>  <!-- selected.ground.armed.border.background -->
+
+    <stbb>#000000</stbb>    <!-- selected.trigger.base.background -->
+    <stbbb>#000000</stbbb>  <!-- selected.trigger.base.border.background -->
+    <sthb>#000000</sthb>    <!-- selected.trigger.hover.background -->
+    <sthbb>#000000</sthbb>  <!-- selected.trigger.hover.border.background -->
+    <stab>#000000</stab>    <!-- selected.trigger.armed.background -->
+    <stabb>#000000</stabb>  <!-- selected.trigger.armed.border.background -->
+
+    <ugbb>#A6A6A6</ugbb>    <!-- unselected.ground.base.background -->
+    <ugbbb>#A6A6A6</ugbbb>  <!-- unselected.ground.base.border.background -->
+    <ughb>#A6A6A6</ughb>    <!-- unselected.ground.hover.background -->
+    <ughbb>#A6A6A6</ughbb>  <!-- unselected.ground.hover.border.background -->
+    <ugab>#A6A6A6</ugab>    <!-- unselected.ground.armed.background -->
+    <ugabb>#A6A6A6</ugabb>  <!-- unselected.ground.armed.border.background -->
+
+    <utbb>#000000</utbb>    <!-- unselected.trigger.base.background -->
+    <utbbb>#000000</utbbb>  <!-- unselected.trigger.base.border.background -->
+    <uthb>#000000</uthb>    <!-- unselected.trigger.hover.background -->
+    <uthbb>#000000</uthbb>  <!-- unselected.trigger.hover.border.background -->
+    <utab>#000000</utab>    <!-- unselected.trigger.armed.background -->
+    <utabb>#000000</utabb>  <!-- unselected.trigger.armed.border.background -->
+
+</style>
