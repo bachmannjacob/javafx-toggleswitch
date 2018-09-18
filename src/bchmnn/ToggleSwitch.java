@@ -34,29 +34,12 @@ public class ToggleSwitch extends Parent {
 
     public TranslateTransition transition = new TranslateTransition();
 
-    public boolean isSelect() {
-        return select.get();
-    }
-
-    public BooleanProperty selectProperty() {
-        return select;
-    }
-
-    public void setSelect(boolean select) {
-        this.select.set(select);
-    }
-
-    public boolean isArmed() {
-        return armed.get();
-    }
-
-    public BooleanProperty armedProperty() {
-        return armed;
-    }
-
-    public void setArmed(boolean armed) {
-        this.armed.set(armed);
-    }
+    public boolean isSelect() { return select.get(); }
+    public BooleanProperty selectProperty() { return select; }
+    public void setSelect(boolean select) { this.select.set(select); }
+    public boolean isArmed() { return armed.get(); }
+    public BooleanProperty armedProperty() { return armed; }
+    public void setArmed(boolean armed) { this.armed.set(armed); }
 
     public ToggleSwitch() {
 
@@ -249,13 +232,9 @@ public class ToggleSwitch extends Parent {
             doc.getDocumentElement().normalize();
         }
 
-        public String getS(String id) {
-            return doc.getElementById(id).getTextContent();
-        }
+        public String getS(String id) { return doc.getElementById(id).getTextContent(); }
 
-        public Double getD(String id) {
-            return Double.parseDouble(doc.getElementById(id).getTextContent());
-        }
+        public Double getD(String id) { return Double.parseDouble(doc.getElementById(id).getTextContent()); }
 
     }
 
